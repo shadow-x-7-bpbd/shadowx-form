@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHADOW X — Member Registration</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:
+        radial-gradient(circle at top,#18202b 0,#090c11 42%,#050608 100%);
+    color:#fff;
+    min-height:100vh;
+    padding:20px 12px;
+}
+
+.container{
+    width:100%;
+    max-width:650px;
+    margin:auto;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.logo{
+    width:75px;
+    height:75px;
+    margin:auto;
+    border:2px solid #fff;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+    font-size:22px;
+    letter-spacing:2px;
+    box-shadow:0 0 25px rgba(255,255,255,.12);
+}
+
+.header h1{
+    margin-top:14px;
+    font-size:25px;
+    letter-spacing:1px;
+}
+
+.header p{
+    margin-top:7px;
+    color:#aeb6c2;
+    font-size:13px;
+}
+
+.card{
+    background:rgba(15,18,24,.94);
+    border:1px solid #272d36;
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 20px 50px rgba(0,0,0,.35);
+}
+
+.section{
+    margin-bottom:25px;
+}
+
+.section-title{
+    font-size:16px;
+    font-weight:800;
+    margin-bottom:15px;
+    padding-bottom:9px;
+    border-bottom:1px solid #292f38;
+}
+
+.field{
+    margin-bottom:15px;
+}
+
+label{
+    display:block;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:7px;
+    color:#e8ebef;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    border:1px solid #303741;
+    background:#0b0e13;
+    color:#fff;
+    border-radius:11px;
+    padding:13px;
+    outline:none;
+    font-size:14px;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#777;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+input[type="file"]{
+    padding:10px;
+    cursor:pointer;
+}
+
+.doc-options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.radio-card{
+    border:1px solid #303741;
+    background:#0b0e13;
+    border-radius:12px;
+    padding:13px;
+    cursor:pointer;
+    margin:0;
+}
+
+.radio-card input{
+    width:auto;
+    margin-right:8px;
+}
+
+.upload-box{
+    background:#0a0d12;
+    border:1px dashed #3a414c;
+    border-radius:13px;
+    padding:14px;
+    margin-bottom:12px;
+}
+
+.preview{
+    display:none;
+    width:100%;
+    max-height:230px;
+    object-fit:contain;
+    margin-top:10px;
+    border-radius:10px;
+    border:1px solid #303741;
+    background:#050608;
+}
+
+.skills{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+}
+
+.skill{
+    border:1px solid #2d333d;
+    background:#0b0e13;
+    border-radius:10px;
+    padding:11px;
+}
+
+.skill label{
+    margin:0;
+    font-weight:500;
+    cursor:pointer;
+}
+
+.skill input{
+    width:auto;
+    margin-right:7px;
+}
+
+.rules{
+    background:#090c11;
+    border:1px solid #292f38;
+    border-radius:13px;
+    padding:15px;
+}
+
+.rules ol{
+    padding-left:20px;
+}
+
+.rules li{
+    margin-bottom:10px;
+    color:#cbd1d9;
+    font-size:13px;
+    line-height:1.55;
+}
+
+.agree{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin-top:15px;
+}
+
+.agree input{
+    width:auto;
+    margin-top:3px;
+}
+
+.agree label{
+    margin:0;
+    line-height:1.5;
+    font-weight:500;
+}
+
+.submit-btn{
+    width:100%;
+    border:0;
+    border-radius:13px;
+    padding:15px;
+    background:#fff;
+    color:#000;
+    font-size:15px;
+    font-weight:900;
+    cursor:pointer;
+    margin-top:5px;
+}
+
+.submit-btn:hover{
+    opacity:.9;
+}
+
+.submit-btn:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+.status{
+    display:none;
+    margin-top:15px;
+    padding:13px;
+    border-radius:11px;
+    text-align:center;
+    font-size:13px;
+}
+
+.success{
+    background:#102416;
+    border:1px solid #245f32;
+    color:#8ee49e;
+}
+
+.error{
+    background:#261012;
+    border:1px solid #68262c;
+    color:#ff9b9b;
+}
+
+.footer{
+    text-align:center;
+    color:#69727e;
+    font-size:11px;
+    margin-top:18px;
+    line-height:1.5;
+}
+
+.hidden{
+    display:none !important;
+}
+
+@media(max-width:480px){
+    .card{
+        padding:15px;
+    }
+
+    .doc-options,
+    .skills{
+        grid-template-columns:1fr;
+    }
+
+    .header h1{
+        font-size:22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <div class="logo">SX</div>
+        <h1>SHADOW X</h1>
+        <p>Cyber Security Team — Member Registration</p>
+    </div>
+
+    <div class="card">
+
+        <form id="memberForm">
+
+            <!-- PERSONAL INFORMATION -->
+            <div class="section">
+
+                <div class="section-title">
+                    01 — Personal Information
+                </div>
+
+                <div class="field">
+                    <label>Apnar Real Name *</label>
+                    <input
+                        type="text"
+                        id="realName"
+                        placeholder="Apnar real name"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label>Apnar Age *</label>
+                    <input
+                        type="number"
+                        id="age"
+                        min="1"
+                        max="100"
+                        placeholder="Age"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label>Telegram Name *</label>
+                    <input
+                        type="text"
+                        id="telegramName"
+                        placeholder="Telegram display name"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label>Telegram Username *</label>
+                    <input
+                        type="text"
+                        id="telegramUsername"
+                        placeholder="@username"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label>Telegram Account-Linked Number</label>
+                    <input
+                        type="tel"
+                        id="telegramNumber"
+                        placeholder="+880..."
+                    >
+                </div>
+
+                <div class="field">
+                    <label>Active Number *</label>
+                    <input
+                        type="tel"
+                        id="activeNumber"
+                        placeholder="+880..."
+                        required
+                    >
+                </div>
+
+            </div>
+
+
+            <!-- GENERAL PHOTOS -->
+            <div class="section">
+
+                <div class="section-title">
+                    02 — Personal Photos
+                </div>
+
+                <div class="upload-box">
+                    <label>Photo 01 *</label>
+                    <input
+                        type="file"
+                        id="photo1"
+                        accept="image/*"
+                        required
+                    >
+                    <img id="preview1" class="preview">
+                </div>
+
+                <div class="upload-box">
+                    <label>Photo 02 *</label>
+                    <input
+                        type="file"
+                        id="photo2"
+                        accept="image/*"
+                        required
+                    >
+                    <img id="preview2" class="preview">
+                </div>
+
+            </div>
+
+
+            <!-- IDENTITY DOCUMENT -->
+            <div class="section">
+
+                <div class="section-title">
+                    03 — Identity Verification
+                </div>
+
+                <div class="field">
+
+                    <label>Identity Document Type *</label>
+
+                    <div class="doc-options">
+
+                        <label class="radio-card">
+                            <input
+                                type="radio"
+                                name="documentType"
+                                value="NID"
+                                onchange="updateDocumentFields()"
+                                required
+                            >
+                            NID Card
+                        </label>
+
+                        <label class="radio-card">
+                            <input
+                                type="radio"
+                                name="documentType"
+                                value="Birth Certificate"
+                                onchange="updateDocumentFields()"
+                            >
+                            Jonmo Nibondhon
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DOCUMENT UPLOAD AREA -->
+
+                <div id="documentUploadArea" class="hidden">
+
+                    <!-- NID -->
+                    <div id="nidUploads" class="hidden">
+
+                        <div class="upload-box">
+
+                            <label>NID Front Photo *</label>
+
+                            <input
+                                type="file"
+                                id="nidFront"
+                                accept="image/*"
+                            >
+
+                            <img
+                                id="nidFrontPreview"
+                                class="preview"
+                            >
+
+                        </div>
+
+
+                        <div class="upload-box">
+
+                            <label>NID Back Photo *</label>
+
+                            <input
+                                type="file"
+                                id="nidBack"
+                                accept="image/*"
+                            >
+
+                            <img
+                                id="nidBackPreview"
+                                class="preview"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BIRTH CERTIFICATE -->
+                    <div id="birthUpload" class="hidden">
+
+                        <div class="upload-box">
+
+                            <label>Jonmo Nibondhon Photo *</label>
+
+                            <input
+                                type="file"
+                                id="birthCertificate"
+                                accept="image/*"
+                            >
+
+                            <img
+                                id="birthPreview"
+                                class="preview"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SKILLS -->
+            <div class="section">
+
+                <div class="section-title">
+                    04 — Skills
+                </div>
+
+                <label>Apnar Skills select korun *</label>
+
+                <div class="skills">
+
+                    <div class="skill">
+                        <label>
+                            <input type="checkbox" value="Web Security">
+                            Web Security
+                        </label>
+                    </div>
+
+                    <div class="skill">
+                        <label>
+                            <input type="checkbox" value="Network Security">
+                            Network Security
+                        </label>
+                    </div>
+
+                    <div class="skill">
+                        <label>
+                            <input type="checkbox" value="Linux">
+                            Linux
+                        </label>
+                    </div>
+
+                    <div class="skill">
+                        <label>
+                            <input type="checkbox" value="Programming">
+                            Programming
+                        </label>
+                    </div>
+
+                    <div class="skill">
+                        <label>
+                            <input type="checkbox" value="Python">
+                            Python
+                        </label>
+                    </div>
+
+                    <div class="skill">
+                        <label>
+                            <input type="checkbox" value="OSINT">
+                            OSINT
+                        </label>
+                    </div>
+
+                    <div class="skill">
+                        <label>
+                            <input type="checkbox" value="Digital Forensics">
+                            Digital Forensics
+                        </label>
+                    </div>
+
+                    <div class="skill">
+                        <label>
+                            <input type="checkbox" value="Security Testing">
+                            Security Testing
+                        </label>
+                    </div>
+
+                    <div class="skill">
+                        <label>
+                            <input type="checkbox" value="Cyber Security Research">
+                            Cyber Security Research
+                        </label>
+                    </div>
+
+                </div>
+
+                <br>
+
+                <div class="field">
+
+                    <label>Skill Level *</label>
+
+                    <select id="skillLevel" required>
+
+                        <option value="">
+                            Select your level
+                        </option>
+
+                        <option value="Beginner">
+                            Beginner
+                        </option>
+
+                        <option value="Intermediate">
+                            Intermediate
+                        </option>
+
+                        <option value="Advanced">
+                            Advanced
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="field">
+
+                    <label>Previous Experience</label>
+
+                    <textarea
+                        id="experience"
+                        placeholder="Apnar previous experience thakle likhun..."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- REASON -->
+            <div class="section">
+
+                <div class="section-title">
+                    05 — About You
+                </div>
+
+                <div class="field">
+
+                    <label>Apni SHADOW X-e join korte chan keno? *</label>
+
+                    <textarea
+                        id="joinReason"
+                        placeholder="Join korar reason likhun..."
+                        required
+                    ></textarea>
+
+                </div>
+
+                <div class="field">
+
+                    <label>Team-e apni ki contribution korte parben?</label>
+
+                    <textarea
+                        id="contribution"
+                        placeholder="Apnar contribution likhun..."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- RULES -->
+            <div class="section">
+
+                <div class="section-title">
+                    06 — Rules & Ethics
+                </div>
+
+                <div class="rules">
+
+                    <ol>
+
+                        <li>
+                            Team-er permission chara kono
+                            system, website, server, account ba
+                            device-e unauthorized access ba attack
+                            korbo na.
+                        </li>
+
+                        <li>
+                            Onno manusher personal information,
+                            account, device ba digital property
+                            damage, churi ba misuse-e Team-er
+                            nam use korbo na.
+                        </li>
+
+                        <li>
+                            Team-er confidential information,
+                            internal discussion, access information,
+                            tools ba member-er personal information
+                            permission chara share korbo na.
+                        </li>
+
+                        <li>
+                            Team members, Admin ebong onno
+                            sobar sathe respectful behavior korbo.
+                        </li>
+
+                        <li>
+                            SHADOW X-er nam use kore kono illegal,
+                            harmful ba unauthorized activity korbo na.
+                        </li>
+
+                        <li>
+                            Cyber testing/research korar age proper
+                            permission nibo ebong legal/authorized
+                            environment-e kaj korbo.
+                        </li>
+
+                    </ol>
+
+                </div>
+
+
+                <div class="agree">
+
+                    <input
+                        type="checkbox"
+                        id="agreeRules"
+                        required
+                    >
+
+                    <label for="agreeRules">
+                        Ami upor-er Rules & Ethics porechi ebong
+                        egulor sathe sommot.
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- FINAL CONFIRMATION -->
+            <div class="section">
+
+                <div class="section-title">
+                    07 — Final Confirmation
+                </div>
+
+                <div class="field">
+
+                    <label>Confirmation Name *</label>
+
+                    <input
+                        type="text"
+                        id="confirmName"
+                        placeholder="Apnar name abar likhun"
+                        required
+                    >
+
+                </div>
+
+                <div class="field">
+
+                    <label>Confirmation Telegram Username *</label>
+
+                    <input
+                        type="text"
+                        id="confirmUsername"
+                        placeholder="@username"
+                        required
+                    >
+
+                </div>
+
+                <div class="field">
+
+                    <label>Application Date</label>
+
+                    <input
+                        type="date"
+                        id="applicationDate"
+                        readonly
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-btn"
+                id="submitBtn"
+            >
+                SUBMIT MEMBERSHIP APPLICATION
+            </button>
+
+            <div id="status" class="status"></div>
+
+        </form>
+
+    </div>
+
+
+    <div class="footer">
+        SHADOW X © 2026<br>
+        Cyber Security • Research • Learning • Ethical Practice
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   TELEGRAM CONFIG
+========================================================= */
+
+const BOT_TOKEN = "8482158852:AAFNq-h1tt3ktDcEXRLDypU2QDRVoFcgey0";
+
+const CHAT_ID = "7266336389";
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+document.getElementById("applicationDate").value =
+    new Date().toISOString().split("T")[0];
+
+
+/* =========================================================
+   DOCUMENT TYPE SWITCH
+========================================================= */
+
+function updateDocumentFields(){
+
+    const selected =
+        document.querySelector(
+            'input[name="documentType"]:checked'
+        );
+
+    const area =
+        document.getElementById("documentUploadArea");
+
+    const nid =
+        document.getElementById("nidUploads");
+
+    const birth =
+        document.getElementById("birthUpload");
+
+    const nidFront =
+        document.getElementById("nidFront");
+
+    const nidBack =
+        document.getElementById("nidBack");
+
+    const birthCertificate =
+        document.getElementById("birthCertificate");
+
+
+    if(!selected){
+
+        area.classList.add("hidden");
+
+        nid.classList.add("hidden");
+
+        birth.classList.add("hidden");
+
+        return;
+    }
+
+
+    area.classList.remove("hidden");
+
+
+    if(selected.value === "NID"){
+
+        nid.classList.remove("hidden");
+
+        birth.classList.add("hidden");
+
+
+        nidFront.required = true;
+
+        nidBack.required = true;
+
+        birthCertificate.required = false;
+
+        birthCertificate.value = "";
+
+    }
+
+
+    else{
+
+        nid.classList.add("hidden");
+
+        birth.classList.remove("hidden");
+
+
+        nidFront.required = false;
+
+        nidBack.required = false;
+
+        birthCertificate.required = true;
+
+
+        nidFront.value = "";
+
+        nidBack.value = "";
+
+    }
+
+}
+
+
+/* =========================================================
+   IMAGE PREVIEW
+========================================================= */
+
+function previewImage(input, previewId){
+
+    const file = input.files[0];
+
+    const preview =
+        document.getElementById(previewId);
+
+
+    if(!file){
+
+        preview.style.display = "none";
+
+        preview.src = "";
+
+        return;
+    }
+
+
+    if(!file.type.startsWith("image/")){
+
+        alert("Please image file select korun.");
+
+        input.value = "";
+
+        return;
+    }
+
+
+    const reader = new FileReader();
+
+
+    reader.onload = function(e){
+
+        preview.src = e.target.result;
+
+        preview.style.display = "block";
+
+    };
+
+
+    reader.readAsDataURL(file);
+}
+
+
+/* General photos */
+
+document.getElementById("photo1")
+.addEventListener("change", function(){
+
+    previewImage(this, "preview1");
+
+});
+
+
+document.getElementById("photo2")
+.addEventListener("change", function(){
+
+    previewImage(this, "preview2");
+
+});
+
+
+/* NID */
+
+document.getElementById("nidFront")
+.addEventListener("change", function(){
+
+    previewImage(this, "nidFrontPreview");
+
+});
+
+
+document.getElementById("nidBack")
+.addEventListener("change", function(){
+
+    previewImage(this, "nidBackPreview");
+
+});
+
+
+/* Birth Certificate */
+
+document.getElementById("birthCertificate")
+.addEventListener("change", function(){
+
+    previewImage(this, "birthPreview");
+
+});
+
+
+/* =========================================================
+   FORM SUBMIT
+========================================================= */
+
+document
+.getElementById("memberForm")
+.addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+
+    const btn =
+        document.getElementById("submitBtn");
+
+    const status =
+        document.getElementById("status");
+
+
+    /* -------------------------------
+       CHECK BOT CONFIG
+    -------------------------------- */
+
+    if(!BOT_TOKEN || !CHAT_ID){
+
+        showStatus(
+            "Bot token ba Chat ID set kora hoyni.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    /* -------------------------------
+       BASIC DATA
+    -------------------------------- */
+
+    const realName =
+        document.getElementById("realName").value.trim();
+
+    const age =
+        document.getElementById("age").value.trim();
+
+    const telegramName =
+        document.getElementById("telegramName").value.trim();
+
+    const telegramUsername =
+        document.getElementById("telegramUsername").value.trim();
+
+    const telegramNumber =
+        document.getElementById("telegramNumber").value.trim();
+
+    const activeNumber =
+        document.getElementById("activeNumber").value.trim();
+
+    const skillLevel =
+        document.getElementById("skillLevel").value;
+
+    const experience =
+        document.getElementById("experience").value.trim();
+
+    const joinReason =
+        document.getElementById("joinReason").value.trim();
+
+    const contribution =
+        document.getElementById("contribution").value.trim();
+
+    const confirmName =
+        document.getElementById("confirmName").value.trim();
+
+    const confirmUsername =
+        document.getElementById("confirmUsername").value.trim();
+
+    const applicationDate =
+        document.getElementById("applicationDate").value;
+
+
+    /* -------------------------------
+       DOCUMENT TYPE
+    -------------------------------- */
+
+    const selectedDocument =
+        document.querySelector(
+            'input[name="documentType"]:checked'
+        );
+
+
+    if(!selectedDocument){
+
+        showStatus(
+            "Identity document type select korun.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const documentType =
+        selectedDocument.value;
+
+
+    /* -------------------------------
+       SKILLS
+    -------------------------------- */
+
+    const selectedSkills =
+        Array.from(
+            document.querySelectorAll(
+                '.skill input[type="checkbox"]:checked'
+            )
+        ).map(
+            checkbox => checkbox.value
+        );
+
+
+    if(selectedSkills.length === 0){
+
+        showStatus(
+            "At least 1 ta skill select korun.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    /* -------------------------------
+       FILES
+    -------------------------------- */
+
+    const photo1 =
+        document.getElementById("photo1").files[0];
+
+    const photo2 =
+        document.getElementById("photo2").files[0];
+
+
+    if(!photo1 || !photo2){
+
+        showStatus(
+            "2 ta personal photo upload korun.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    /* -------------------------------
+       DOCUMENT VALIDATION + FILES
+    -------------------------------- */
+
+    let nidFrontFile = null;
+    let nidBackFile = null;
+    let birthFile = null;
+
+
+    if(documentType === "NID"){
+
+        nidFrontFile =
+            document.getElementById("nidFront").files[0];
+
+        nidBackFile =
+            document.getElementById("nidBack").files[0];
+
+
+        if(!nidFrontFile || !nidBackFile){
+
+            showStatus(
+                "NID-er Front ebong Back duita photo upload korun.",
+                "error"
+            );
+
+            return;
+        }
+
+    }
+
+
+    if(documentType === "Birth Certificate"){
+
+        birthFile =
+            document.getElementById(
+                "birthCertificate"
+            ).files[0];
+
+
+        if(!birthFile){
+
+            showStatus(
+                "Jonmo Nibondhon-er photo upload korun.",
+                "error"
+            );
+
+            return;
+        }
+
+    }
+
+
+    /* -------------------------------
+       BUTTON
+    -------------------------------- */
+
+    btn.disabled = true;
+
+    btn.textContent = "SUBMITTING...";
+
+
+    /* -------------------------------
+       TELEGRAM MESSAGE
+    -------------------------------- */
+
+    const message =
+
+`🛡️ SHADOW X — NEW MEMBER APPLICATION
+
+━━━━━━━━━━━━━━━━━━
+
+👤 PERSONAL INFORMATION
+
+Real Name:
+${realName}
+
+Age:
+${age}
+
+Telegram Name:
+${telegramName}
+
+Telegram Username:
+${telegramUsername}
+
+Telegram Number:
+${telegramNumber || "Not provided"}
+
+Active Number:
+${activeNumber}
+
+━━━━━━━━━━━━━━━━━━
+
+📄 IDENTITY
+
+Document Type:
+${documentType}
+
+✅ Identity document image Telegram-e pathano hoyeche.
+
+━━━━━━━━━━━━━━━━━━
+
+💻 SKILLS
+
+${selectedSkills.map(s => "• " + s).join("\n")}
+
+Skill Level:
+${skillLevel}
+
+Experience:
+${experience || "Not provided"}
+
+━━━━━━━━━━━━━━━━━━
+
+🎯 JOIN REASON
+
+${joinReason}
+
+━━━━━━━━━━━━━━━━━━
+
+🤝 CONTRIBUTION
+
+${contribution || "Not provided"}
+
+━━━━━━━━━━━━━━━━━━
+
+✅ RULE ACCEPTANCE
+
+Rules accepted:
+YES
+
+Confirmation Name:
+${confirmName}
+
+Confirmation Username:
+${confirmUsername}
+
+Application Date:
+${applicationDate}
+
+━━━━━━━━━━━━━━━━━━
+
+SHADOW X MEMBER REGISTRATION`;
+
+
+    try{
+
+
+        /* -------------------------------
+           SEND TEXT
+        -------------------------------- */
+
+        const textResponse =
+            await fetch(
+                `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:JSON.stringify({
+
+                        chat_id:CHAT_ID,
+
+                        text:message
+
+                    })
+                }
+            );
+
+
+        const textResult =
+            await textResponse.json();
+
+
+        if(!textResult.ok){
+
+            throw new Error(
+                textResult.description ||
+                "Telegram message failed"
+            );
+
+        }
+
+
+        /* -------------------------------
+           SEND PERSONAL PHOTO 01
+        -------------------------------- */
+
+        await sendPhotoToTelegram(
+            photo1,
+            `Personal Photo 01 — ${realName}`
+        );
+
+
+        /* -------------------------------
+           SEND PERSONAL PHOTO 02
+        -------------------------------- */
+
+        await sendPhotoToTelegram(
+            photo2,
+            `Personal Photo 02 — ${realName}`
+        );
+
+
+        /* -------------------------------
+           SEND NID DOCUMENTS
+        -------------------------------- */
+
+        if(documentType === "NID"){
+
+            await sendPhotoToTelegram(
+                nidFrontFile,
+                `NID Front — ${realName}`
+            );
+
+            await sendPhotoToTelegram(
+                nidBackFile,
+                `NID Back — ${realName}`
+            );
+
+        }
+
+
+        /* -------------------------------
+           SEND BIRTH CERTIFICATE
+        -------------------------------- */
+
+        if(documentType === "Birth Certificate"){
+
+            await sendPhotoToTelegram(
+                birthFile,
+                `Jonmo Nibondhon — ${realName}`
+            );
+
+        }
+
+
+        /* -------------------------------
+           SUCCESS
+        -------------------------------- */
+
+        showStatus(
+            "Application successfully submit hoyeche. Admin review korbe.",
+            "success"
+        );
+
+
+        document
+        .getElementById("memberForm")
+        .reset();
+
+
+        document
+        .querySelectorAll(".preview")
+        .forEach(function(img){
+
+            img.style.display = "none";
+
+            img.src = "";
+
+        });
+
+
+        document
+        .getElementById("documentUploadArea")
+        .classList.add("hidden");
+
+
+        document
+        .getElementById("nidUploads")
+        .classList.add("hidden");
+
+
+        document
+        .getElementById("birthUpload")
+        .classList.add("hidden");
+
+
+        document
+        .getElementById("applicationDate")
+        .value =
+            new Date()
+            .toISOString()
+            .split("T")[0];
+
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+
+        showStatus(
+            "Submit korte problem hoyeche. Bot token, Chat ID ba internet connection check korun.",
+            "error"
+        );
+
+    }
+
+
+    finally{
+
+        btn.disabled = false;
+
+        btn.textContent =
+            "SUBMIT MEMBERSHIP APPLICATION";
+
+    }
+
+});
+
+
+/* =========================================================
+   SEND PHOTO
+========================================================= */
+
+async function sendPhotoToTelegram(file, caption){
+
+    const formData =
+        new FormData();
+
+
+    formData.append(
+        "chat_id",
+        CHAT_ID
+    );
+
+
+    formData.append(
+        "photo",
+        file
+    );
+
+
+    formData.append(
+        "caption",
+        caption
+    );
+
+
+    const response =
+        await fetch(
+            `https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`,
+            {
+                method:"POST",
+                body:formData
+            }
+        );
+
+
+    const result =
+        await response.json();
+
+
+    if(!result.ok){
+
+        throw new Error(
+            result.description ||
+            "Photo upload failed"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+function showStatus(message, type){
+
+    const status =
+        document.getElementById("status");
+
+
+    status.textContent = message;
+
+    status.className =
+        "status " +
+        (type === "success"
+            ? "success"
+            : "error");
+
+
+    status.style.display = "block";
+
+
+    status.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+
+}
+
+</script>
+
+</body>
+</html>
